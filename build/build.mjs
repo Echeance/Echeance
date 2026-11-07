@@ -18,7 +18,16 @@ const FONTS = {
   lit: font("Lit", "lit.woff2"),
   mono: font("Mono", "mono.woff2"),
 };
-const C = { bg: "#120e0b", bg2: "#1d1611", cream: "#efe6d6", dim: "#8f8270", amber: "#ffb547", red: "#d8402a", line: "#2c231b", paper: "#efe5cf", ink: "#2b2420" };
+// Fonds transparents : une variante par thème GitHub (servies via <picture> dans le README).
+const PAL = {
+  dark: { cream: "#ece6da", dim: "#8b949e", amber: "#ffb547", red: "#ff6b4a", line: "#30363d", hook: "#f3d9a8", text2: "#c9d1d9" },
+  light: { cream: "#1f2328", dim: "#59636e", amber: "#b4610b", red: "#c4321c", line: "#d0d7de", hook: "#7a4a12", text2: "#31373d" },
+};
+const C = { paper: "#efe5cf", ink: "#2b2420", ...PAL.dark };
+// éléments « appareil » (terminal, écran d'oscilloscope) : toujours sombres, couleurs fixes
+const DEV = { txt: "#efe6d6", amb: "#ffb547", red: "#ff6b4a", dim: "#8f8270" };
+let THEME = "dark";
+const shade = (hex, k) => "#" + hex.slice(1).match(/../g).map(h => Math.round(parseInt(h, 16) * k).toString(16).padStart(2, "0")).join("");
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 /* grain + vignette réutilisables */
@@ -29,8 +38,14 @@ const svg = (w, h, fonts, css, body, title) => `<svg xmlns="http://www.w3.org/20
 .b{font-family:AnyBlack,Impact,sans-serif}.w{font-family:AnyWide,Arial,sans-serif}.i{font-family:LitIt,Georgia,serif;font-style:italic}.l{font-family:Lit,Georgia,serif}.m{font-family:Mono,monospace}
 ${css}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>${body}</svg>`;
-const write = (name, s) => { writeFileSync(join(out, name), s); console.log(name, (s.length / 1024).toFixed(1) + " Ko"); };
+const write = (name, s) => {
+  if (name.startsWith("world-")) { if (THEME !== "dark") return; } // vignettes : illustrations autonomes, une seule version
+  else name = name.replace(/\.svg$/, `-${THEME}.svg`);
+  writeFileSync(join(out, name), s); console.log(name, (s.length / 1024).toFixed(1) + " Ko");
+};
 
+for (const theme of ["dark", "light"]) {
+THEME = theme; Object.assign(C, PAL[theme]);
 /* ------------------------------------------------------------------ */
 /* 1. En-tête                                                          */
 /* ------------------------------------------------------------------ */
@@ -56,9 +71,9 @@ const write = (name, s) => { writeFileSync(join(out, name), s); console.log(name
   `, `
   <defs>${defs()}<linearGradient id="dial" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6e3ae"/><stop offset="1" stop-color="#e1b05c"/></linearGradient>
     <clipPath id="dc"><rect x="740" y="70" width="480" height="70" rx="8"/></clipPath></defs>
-  <rect width="${W}" height="${H}" rx="18" fill="${C.bg}"/>
-  <rect width="${W}" height="${H}" rx="18" fill="url(#g)"/>
-  <radialGradient id="hl" cx="78%" cy="8%" r="60%"><stop offset="0" stop-color="${C.amber}" stop-opacity=".16"/><stop offset="1" stop-color="${C.amber}" stop-opacity="0"/></radialGradient><rect width="${W}" height="${H}" rx="18" fill="url(#hl)" class="glow"/>
+  
+  
+  
 
   <text x="64" y="64" class="m" font-size="15" fill="${C.dim}">echeance · Nathan Ghys</text>
   <circle cx="1188" cy="58" r="6" fill="${C.red}" class="blink"/><text x="1176" y="64" class="w" font-size="14" fill="${C.cream}" text-anchor="end" letter-spacing="1">EN ONDE</text>
@@ -75,22 +90,22 @@ const write = (name, s) => { writeFileSync(join(out, name), s); console.log(name
   <text x="58" y="440" class="b" font-size="172" fill="none" stroke="${C.red}" stroke-width="1.5" letter-spacing="-4" transform="translate(5 5)" opacity=".55">${letters("GHYS", 0, 0, 0, "", "", .55)}</text>
 
   <g class="rise" style="animation-delay:.9s">
-    <text x="640" y="268" class="i" font-size="34" fill="#f3d9a8">Je construis des choses</text>
-    <text x="640" y="310" class="i" font-size="34" fill="#f3d9a8">qui tournent pour de vrai.</text>
+    <text x="640" y="268" class="i" font-size="34" fill="${C.hook}">Je construis des choses</text>
+    <text x="640" y="310" class="i" font-size="34" fill="${C.hook}">qui tournent pour de vrai.</text>
   </g>
   <g class="fade" style="animation-delay:1.3s">
     <text x="640" y="360" class="m" font-size="16" fill="${C.dim}">Développeur full-stack · C++ · Java · JavaScript</text>
     <text x="640" y="386" class="m" font-size="16" fill="${C.dim}">BUT Informatique · IUT d'Arles · Aix-Marseille Université</text>
   </g>
   <g transform="translate(640 400)" class="fade" style="animation-delay:1.1s">
-    <rect width="580" height="96" rx="8" fill="#0d0a07" stroke="${C.line}"/>
-    <g transform="translate(20 -12)" fill="none" stroke="${C.amber}" stroke-width="2.4" stroke-linejoin="round">
+    <rect width="580" height="96" rx="8" fill="#0d0a07"/>
+    <g transform="translate(20 -12)" fill="none" stroke="${DEV.amb}" stroke-width="2.4" stroke-linejoin="round">
       <path d="${wave(0, 34)}"><animate attributeName="d" dur="2.4s" repeatCount="indefinite" values="${wave(0, 34)};${wave(2.1, 26)};${wave(4.2, 36)};${wave(0, 34)}"/></path>
     </g>
-    <text x="560" y="84" class="w" font-size="12" fill="${C.dim}" text-anchor="end" letter-spacing="1">SIGNAL CALÉ</text>
+    <text x="560" y="84" class="w" font-size="12" fill="${DEV.dim}" text-anchor="end" letter-spacing="1">SIGNAL CALÉ</text>
   </g>
-  <rect width="${W}" height="${H}" rx="18" fill="url(#gv)"/>
-  <rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="17" fill="none" stroke="#000" stroke-opacity=".6" stroke-width="2"/>
+  
+  
   `, "Nathan Ghys, développeur full-stack : je construis des choses qui tournent pour de vrai."));
 }
 
@@ -155,10 +170,10 @@ const write = (name, s) => { writeFileSync(join(out, name), s); console.log(name
   const W = 1280, H = 320;
   const peng = readFileSync(join(here, "penguin.svg"), "utf8").match(/<rect[^>]*\/>/g).join("");
   const lines = [
-    ["› ", "lance firefox", C.cream, 0],
-    ["✓ ", "voie rapide : exécuté sans IA, même hors ligne", C.amber, 1.6],
-    ["› ", "supprime le dossier Téléchargements", C.cream, 3.0],
-    ["! ", "action sensible : confirmation obligatoire [o/N]", C.red, 4.6],
+    ["› ", "lance firefox", DEV.txt, 0],
+    ["✓ ", "voie rapide : exécuté sans IA, même hors ligne", DEV.amb, 1.6],
+    ["› ", "supprime le dossier Téléchargements", DEV.txt, 3.0],
+    ["! ", "action sensible : confirmation obligatoire [o/N]", DEV.red, 4.6],
   ];
   write("now.svg", svg(W, H, ["black", "it", "mono", "wide", "lit"], `
     .ln{opacity:0;animation:ln 9s steps(1) infinite}
@@ -166,22 +181,22 @@ const write = (name, s) => { writeFileSync(join(out, name), s); console.log(name
     .cur{animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
     .bob{animation:bob 2.6s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-6px)}}
   `, `<defs>${defs()}</defs>
-  <rect width="${W}" height="${H}" rx="18" fill="${C.bg}"/><rect width="${W}" height="${H}" rx="18" fill="url(#g)"/>
+  
   <text x="64" y="70" class="w" font-size="15" fill="${C.red}" letter-spacing="2">● EN CE MOMENT</text>
   <text x="64" y="138" class="b" font-size="82" fill="${C.cream}">Avenoir</text>
-  <text x="64" y="182" class="i" font-size="23" fill="#f3d9a8">Parler à son ordinateur,</text>
-  <text x="64" y="212" class="i" font-size="23" fill="#f3d9a8">sans lui confier les clés de la maison.</text>
+  <text x="64" y="182" class="i" font-size="23" fill="${C.hook}">Parler à son ordinateur,</text>
+  <text x="64" y="212" class="i" font-size="23" fill="${C.hook}">sans lui confier les clés de la maison.</text>
   <text x="64" y="262" class="m" font-size="14" fill="${C.dim}">C++23 · CMake · Linux et Windows</text>
   <g transform="translate(470 54)">
-    <rect width="746" height="212" rx="10" fill="#0b0907" stroke="${C.line}"/>
+    <rect width="746" height="212" rx="10" fill="#0b0907"/>
     <circle cx="20" cy="18" r="5" fill="#3a2c20"/><circle cx="38" cy="18" r="5" fill="#3a2c20"/><circle cx="56" cy="18" r="5" fill="#3a2c20"/>
-    <text x="373" y="23" class="m" font-size="12" fill="${C.dim}" text-anchor="middle">avenoir</text>
-    ${lines.map(([p, t, col, d], i) => `<text x="28" y="${70 + i * 36}" class="m ln" font-size="17" style="animation-delay:${d}s"><tspan fill="${col === C.cream ? C.amber : col}">${esc(p)}</tspan><tspan fill="${col}">${esc(t)}</tspan></text>`).join("")}
-    <rect x="28" y="182" width="10" height="18" fill="${C.amber}" class="cur"/>
-    <g transform="translate(640 92) scale(6)" class="bob" shape-rendering="crispEdges">${peng}</g>
+    <text x="373" y="23" class="m" font-size="12" fill="${DEV.dim}" text-anchor="middle">avenoir</text>
+    ${lines.map(([p, t, col, d], i) => `<text x="28" y="${70 + i * 36}" class="m ln" font-size="17" style="animation-delay:${d}s"><tspan fill="${col === DEV.txt ? DEV.amb : col}">${esc(p)}</tspan><tspan fill="${col}">${esc(t)}</tspan></text>`).join("")}
+    <rect x="28" y="182" width="10" height="18" fill="${DEV.amb}" class="cur"/>
+    <g transform="translate(640 92) scale(6)" shape-rendering="crispEdges"><g class="bob">${peng}</g></g>
   </g>
   <text x="1216" y="300" class="i" font-size="12" fill="${C.dim}" text-anchor="end">illustration du fonctionnement</text>
-  <rect width="${W}" height="${H}" rx="18" fill="url(#gv)"/>`, "En ce moment : Avenoir, un assistant système sûr par défaut."));
+  `, "En ce moment : Avenoir, un assistant système sûr par défaut."));
 }
 
 /* ------------------------------------------------------------------ */
@@ -198,21 +213,23 @@ const write = (name, s) => { writeFileSync(join(out, name), s); console.log(name
     { id: "navyra", n: "1", nl: "passe pour tous les trajets", t: "Navyra", k: "Carte et itinéraires · SAÉ S2", h: ["Brest → Nice : le plus court", "chemin, pour toutes les villes."], s: "C++ · Qt · Floyd-Warshall", y: "SAÉ S2", col: "#9ad36a" },
   ];
   for (const c of cards) {
+    const col = THEME === "light" ? shade(c.col === C.amber ? PAL.dark.amber : c.col, .62) : (c.col === C.amber ? PAL.dark.amber : c.col);
     write(`card-${c.id}.svg`, svg(W, H, ["black", "it", "mono", "wide"], `
       .num{animation:num 1.2s cubic-bezier(.2,.9,.2,1) both}@keyframes num{from{transform:translateY(24px);opacity:0}}
       .bar{transform-origin:left;animation:bar 1.4s cubic-bezier(.2,.9,.2,1) both .3s}@keyframes bar{from{transform:scaleX(0)}}
     `, `<defs>${defs()}</defs>
-    <rect width="${W}" height="${H}" rx="16" fill="${C.bg}"/><rect width="${W}" height="${H}" rx="16" fill="url(#g)"/>
-    <rect x="36" y="36" width="64" height="5" fill="${c.col}" class="bar"/>
+    
+    <rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="16" fill="none" stroke="${C.line}" stroke-width="1.5"/>
+    <rect x="36" y="36" width="64" height="5" fill="${col}" class="bar"/>
     <text x="36" y="72" class="w" font-size="13" fill="${C.dim}" letter-spacing="1">${esc(c.k.toUpperCase())}</text>
     <text x="${W - 36}" y="72" class="m" font-size="13" fill="${C.dim}" text-anchor="end">${esc(c.y)}</text>
     <text x="36" y="128" class="b" font-size="52" fill="${C.cream}">${esc(c.t)}</text>
-    <text x="36" y="170" class="i" font-size="21" fill="#f3d9a8">${esc(c.h[0])}</text>
-    <text x="36" y="198" class="i" font-size="21" fill="#f3d9a8">${esc(c.h[1])}</text>
-    <g class="num"><text x="${W - 36}" y="268" class="b" font-size="74" fill="${c.col}" text-anchor="end">${esc(c.n)}</text>
+    <text x="36" y="170" class="i" font-size="21" fill="${C.hook}">${esc(c.h[0])}</text>
+    <text x="36" y="198" class="i" font-size="21" fill="${C.hook}">${esc(c.h[1])}</text>
+    <g class="num"><text x="${W - 36}" y="268" class="b" font-size="74" fill="${col}" text-anchor="end">${esc(c.n)}</text>
     <text x="${W - 36}" y="292" class="m" font-size="12" fill="${C.dim}" text-anchor="end">${esc(c.nl)}</text></g>
     <text x="36" y="240" class="m" font-size="13" fill="${C.cream}" opacity=".8">${esc(c.s)}</text>
-    <rect width="${W}" height="${H}" rx="16" fill="url(#gv)"/>`, `${c.t} — ${c.h.join(" ")}`));
+    `, `${c.t} — ${c.h.join(" ")}`));
   }
 }
 
@@ -233,7 +250,7 @@ const write = (name, s) => { writeFileSync(join(out, name), s); console.log(name
     .it{opacity:0;animation:in .6s ease forwards}@keyframes in{to{opacity:1}}
     .lvl{transform-box:fill-box;transform-origin:bottom;animation:lv 2.6s ease-in-out infinite alternate}@keyframes lv{from{transform:scaleY(.35)}}
   `, `<defs>${defs()}</defs>
-  <rect width="${W}" height="${H}" rx="18" fill="${C.bg}"/><rect width="${W}" height="${H}" rx="18" fill="url(#g)"/>
+  
   <text x="64" y="74" class="w" font-size="15" fill="${C.amber}" letter-spacing="2">LE STUDIO</text>
   <text x="200" y="74" class="i" font-size="18" fill="${C.dim}">le matériel avec lequel j'émets</text>
   ${cats.map(([cat, items], ci) => {
@@ -241,10 +258,10 @@ const write = (name, s) => { writeFileSync(join(out, name), s); console.log(name
     return `<g transform="translate(${x} 110)">
       ${[0, 1, 2, 3, 4, 5].map(b => `<rect x="${b * 9}" y="${-2 - (b + 2) * 3}" width="6" height="${(b + 2) * 3}" fill="${C.amber}" opacity="${.35 + b * .12}" class="lvl" style="animation-delay:${(ci * .3 + b * .1).toFixed(2)}s"/>`).join("")}
       <text y="34" class="b" font-size="27" fill="${C.cream}">${esc(cat)}</text>
-      ${items.map((it, i) => `<text y="${70 + i * 27}" class="m it" font-size="15" fill="#cfc3b0" style="animation-delay:${(ci * .15 + i * .05).toFixed(2)}s">${esc(it)}</text>`).join("")}
+      ${items.map((it, i) => `<text y="${70 + i * 27}" class="m it" font-size="15" fill="${C.text2}" style="animation-delay:${(ci * .15 + i * .05).toFixed(2)}s">${esc(it)}</text>`).join("")}
     </g>`;
   }).join("")}
-  <rect width="${W}" height="${H}" rx="18" fill="url(#gv)"/>`, "Compétences : Java, C++, C, JavaScript, TypeScript, Python, React, Node.js, PostgreSQL, Docker, Linux, Raspberry Pi, SolidWorks et plus."));
+  `, "Compétences : Java, C++, C, JavaScript, TypeScript, Python, React, Node.js, PostgreSQL, Docker, Linux, Raspberry Pi, SolidWorks et plus."));
 }
 
 /* ------------------------------------------------------------------ */
@@ -255,11 +272,12 @@ const write = (name, s) => { writeFileSync(join(out, name), s); console.log(name
   write("footer.svg", svg(W, H, ["black", "it", "wide", "mono"], `
     .sig{stroke-dasharray:900;stroke-dashoffset:900;animation:sig 3.5s ease forwards .4s}@keyframes sig{to{stroke-dashoffset:0}}
   `, `<defs>${defs()}</defs>
-  <rect width="${W}" height="${H}" rx="18" fill="${C.amber}"/>
-  <text x="64" y="96" class="b" font-size="64" fill="${C.bg}">QSL ?</text>
-  <text x="270" y="78" class="i" font-size="24" fill="${C.bg}">Stage, alternance ou projet :</text>
-  <text x="270" y="110" class="i" font-size="24" fill="${C.bg}">je suis à l'écoute.</text>
-  <path class="sig" d="M820 110 C850 40 870 130 900 80 S950 50 960 100 S1010 60 1040 96 S1100 70 1130 92 S1180 80 1216 74" fill="none" stroke="${C.bg}" stroke-width="3" stroke-linecap="round"/>
-  <text x="1216" y="140" class="m" font-size="13" fill="${C.bg}" text-anchor="end" opacity=".75">Nathan Ghys · Arles · fin de transmission</text>
-  <rect width="${W}" height="${H}" rx="18" fill="url(#g)"/>`, "Stage, alternance ou projet : je suis à l'écoute."));
+  <line x1="64" x2="${W - 64}" y1="20" y2="20" stroke="${C.line}" stroke-width="1.5"/>
+  <text x="64" y="104" class="b" font-size="64" fill="${C.amber}">QSL ?</text>
+  <text x="270" y="86" class="i" font-size="24" fill="${C.cream}">Stage, alternance ou projet :</text>
+  <text x="270" y="118" class="i" font-size="24" fill="${C.cream}">je suis à l'écoute.</text>
+  <path class="sig" d="M820 110 C850 40 870 130 900 80 S950 50 960 100 S1010 60 1040 96 S1100 70 1130 92 S1180 80 1216 74" fill="none" stroke="${C.amber}" stroke-width="3" stroke-linecap="round"/>
+  <text x="1216" y="140" class="m" font-size="13" fill="${C.dim}" text-anchor="end">Nathan Ghys · Arles · fin de transmission</text>
+  `, "Stage, alternance ou projet : je suis à l'écoute."));
+}
 }

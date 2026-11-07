@@ -9,6 +9,6 @@
       <rect x="10" y="26" width="104" height="80" fill="#3a2a1d"/><rect x="128" y="26" width="104" height="80" fill="#5a3b22"/><rect x="246" y="26" width="104" height="80" fill="#3a2a1d"/></g>
     <circle cx="70" cy="66" r="18" fill="#f0a33a" opacity=".55"/><path d="M150 96 L178 52 L206 96Z" fill="#f0a33a" opacity=".45"/><rect width="248" height="180" fill="url(#g)"/>
     <rect y="134" width="248" height="46" fill="#0e0c0a" opacity=".92"/>
-    <text x="14" y="159" class="w" font-size="16" fill="#efe6d6">Mémoires</text>
-    <text x="14" y="173" class="i" font-size="11.5" fill="#efe6d6" opacity=".7">une bobine de souvenirs, en 3D</text></g>
+    <text x="14" y="159" class="w" font-size="16" fill="#ece6da">Mémoires</text>
+    <text x="14" y="173" class="i" font-size="11.5" fill="#ece6da" opacity=".7">une bobine de souvenirs, en 3D</text></g>
     <rect x=".5" y=".5" width="247" height="179" rx="11.5" fill="none" stroke="#000" stroke-opacity=".35"/></svg>

@@ -1,5 +1,5 @@
 <a href="https://echeance.github.io/">
-  <img src="assets/hero.svg" width="100%" alt="Nathan Ghys, développeur full-stack : je construis des choses qui tournent pour de vrai.">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg"><img src="assets/hero-light.svg" width="100%" alt="Nathan Ghys, développeur full-stack : je construis des choses qui tournent pour de vrai."></picture>
 </a>
 
 <p align="center">
@@ -27,28 +27,28 @@
 <br>
 
 <a href="https://github.com/echeance/Avenoir">
-  <img src="assets/now.svg" width="100%" alt="En ce moment : Avenoir, un assistant système sûr par défaut, en C++23.">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/now-dark.svg"><img src="assets/now-light.svg" width="100%" alt="En ce moment : Avenoir, un assistant système sûr par défaut, en C++23."></picture>
 </a>
 
 <br><br>
 
 <p align="center">
-  <a href="https://github.com/echeance/DeltaRise"><img src="assets/card-deltarise.svg" width="49%" alt="DeltaRise"></a>
-  <a href="https://echeance.github.io/templates/overworld/#etape-10"><img src="assets/card-facelog.svg" width="49%" alt="FaceLog"></a>
-  <a href="https://github.com/echeance/NeverLessSpigot"><img src="assets/card-neverless.svg" width="49%" alt="NeverLessSpigot"></a>
-  <a href="https://echeance.github.io/templates/overworld/#etape-3"><img src="assets/card-rinaorc.svg" width="49%" alt="Rinaorc"></a>
-  <a href="https://echeance.github.io/templates/overworld/#etape-4"><img src="assets/card-emerixe.svg" width="49%" alt="EmerixeProxy"></a>
-  <a href="https://github.com/echeance/S2.02"><img src="assets/card-navyra.svg" width="49%" alt="Navyra"></a>
+  <a href="https://github.com/echeance/DeltaRise"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-deltarise-dark.svg"><img src="assets/card-deltarise-light.svg" width="49%" alt="DeltaRise"></picture></a>
+  <a href="https://echeance.github.io/templates/overworld/#etape-10"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-facelog-dark.svg"><img src="assets/card-facelog-light.svg" width="49%" alt="FaceLog"></picture></a>
+  <a href="https://github.com/echeance/NeverLessSpigot"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-neverless-dark.svg"><img src="assets/card-neverless-light.svg" width="49%" alt="NeverLessSpigot"></picture></a>
+  <a href="https://echeance.github.io/templates/overworld/#etape-3"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-rinaorc-dark.svg"><img src="assets/card-rinaorc-light.svg" width="49%" alt="Rinaorc"></picture></a>
+  <a href="https://echeance.github.io/templates/overworld/#etape-4"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-emerixe-dark.svg"><img src="assets/card-emerixe-light.svg" width="49%" alt="EmerixeProxy"></picture></a>
+  <a href="https://github.com/echeance/S2.02"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-navyra-dark.svg"><img src="assets/card-navyra-light.svg" width="49%" alt="Navyra"></picture></a>
 </p>
 
 <br>
 
-<img src="assets/studio.svg" width="100%" alt="Compétences : Java, C++, C, JavaScript, TypeScript, Python, React, Node.js, PostgreSQL, Docker, Linux, Raspberry Pi, SolidWorks et plus.">
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/studio-dark.svg"><img src="assets/studio-light.svg" width="100%" alt="Compétences : Java, C++, C, JavaScript, TypeScript, Python, React, Node.js, PostgreSQL, Docker, Linux, Raspberry Pi, SolidWorks et plus."></picture>
 
 <br><br>
 
 <a href="mailto:ympax14@gmail.com">
-  <img src="assets/footer.svg" width="100%" alt="Stage, alternance ou projet : je suis à l'écoute.">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/footer-dark.svg"><img src="assets/footer-light.svg" width="100%" alt="Stage, alternance ou projet : je suis à l'écoute."></picture>
 </a>
 
 <!-- Les visuels sont générés par build/build.mjs (node build/build.mjs). -->

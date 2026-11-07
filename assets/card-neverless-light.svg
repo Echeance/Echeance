@@ -7,14 +7,15 @@
     
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}</style><defs><filter id="g" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .9  0 0 0 0 .8  0 0 0 .07 0"/></filter>
   <radialGradient id="gv" cx="50%" cy="45%" r="75%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient></defs>
-    <rect width="620" height="330" rx="16" fill="#120e0b"/><rect width="620" height="330" rx="16" fill="url(#g)"/>
-    <rect x="36" y="36" width="64" height="5" fill="#7fd1c7" class="bar"/>
-    <text x="36" y="72" class="w" font-size="13" fill="#8f8270" letter-spacing="1">MOTEUR DE SERVEUR MULTITHREAD</text>
-    <text x="584" y="72" class="m" font-size="13" fill="#8f8270" text-anchor="end">2024 → 26</text>
-    <text x="36" y="128" class="b" font-size="52" fill="#efe6d6">NeverLessSpigot</text>
-    <text x="36" y="170" class="i" font-size="21" fill="#f3d9a8">Le serveur remonte le temps</text>
-    <text x="36" y="198" class="i" font-size="21" fill="#f3d9a8">pour que chaque coup compte.</text>
-    <g class="num"><text x="584" y="268" class="b" font-size="74" fill="#7fd1c7" text-anchor="end">40</text>
-    <text x="584" y="292" class="m" font-size="12" fill="#8f8270" text-anchor="end">positions mémorisées par joueur</text></g>
-    <text x="36" y="240" class="m" font-size="13" fill="#efe6d6" opacity=".8">Java · NMS · Netty · Maven</text>
-    <rect width="620" height="330" rx="16" fill="url(#gv)"/></svg>
+    
+    <rect x="1" y="1" width="618" height="328" rx="16" fill="none" stroke="#d0d7de" stroke-width="1.5"/>
+    <rect x="36" y="36" width="64" height="5" fill="#4f827b" class="bar"/>
+    <text x="36" y="72" class="w" font-size="13" fill="#59636e" letter-spacing="1">MOTEUR DE SERVEUR MULTITHREAD</text>
+    <text x="584" y="72" class="m" font-size="13" fill="#59636e" text-anchor="end">2024 → 26</text>
+    <text x="36" y="128" class="b" font-size="52" fill="#1f2328">NeverLessSpigot</text>
+    <text x="36" y="170" class="i" font-size="21" fill="#7a4a12">Le serveur remonte le temps</text>
+    <text x="36" y="198" class="i" font-size="21" fill="#7a4a12">pour que chaque coup compte.</text>
+    <g class="num"><text x="584" y="268" class="b" font-size="74" fill="#4f827b" text-anchor="end">40</text>
+    <text x="584" y="292" class="m" font-size="12" fill="#59636e" text-anchor="end">positions mémorisées par joueur</text></g>
+    <text x="36" y="240" class="m" font-size="13" fill="#1f2328" opacity=".8">Java · NMS · Netty · Maven</text>
+    </svg>
