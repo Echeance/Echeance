@@ -1,35 +1,54 @@
-<br clear="both">
+<a href="https://echeance.github.io/">
+  <img src="assets/hero.svg" width="100%" alt="Nathan Ghys, développeur full-stack : je construis des choses qui tournent pour de vrai.">
+</a>
 
-<h1 align="center">Ympax / BeFresh_</h1>
+<p align="center">
+  <a href="https://echeance.github.io/"><b>Portfolio</b></a>
+  &nbsp;·&nbsp;
+  <a href="https://www.linkedin.com/in/nathan-ghys-3a8505433">LinkedIn</a>
+  &nbsp;·&nbsp;
+  <a href="mailto:ympax14@gmail.com">ympax14@gmail.com</a>
+  &nbsp;·&nbsp;
+  Arles, France
+</p>
 
-###
+<br>
 
-<div align="center">
-  <img height="300" src="https://i.imgur.com/Y7elKWz.png"  />
-</div>
+<p align="center"><i>Mon portfolio existe en cinq mises en scène. Choisissez la vôtre :</i></p>
 
-###
+<p align="center">
+  <a href="https://echeance.github.io/templates/overworld/"><img src="assets/world-atlas.svg" width="19%" alt="L'Atlas"></a>
+  <a href="https://echeance.github.io/templates/memoires/"><img src="assets/world-memoires.svg" width="19%" alt="Mémoires"></a>
+  <a href="https://echeance.github.io/templates/frequences/"><img src="assets/world-frequences.svg" width="19%" alt="Fréquences"></a>
+  <a href="https://echeance.github.io/templates/chambre-noire/"><img src="assets/world-chambre-noire.svg" width="19%" alt="Chambre noire"></a>
+  <a href="https://echeance.github.io/templates/planches/"><img src="assets/world-planches.svg" width="19%" alt="Planches"></a>
+</p>
 
-<div align="center">
-  <a href="https://open.spotify.com/user/6xhevxqs9xlzxt3a1rgvxijjg">
-    <img src="https://spotify-recently-played-readme.vercel.app/api?user=6xhevxqs9xlzxt3a1rgvxijjg&count=5&unique=true" alt="Spotify recently played"  />
-  </a>
-</div>
+<br>
 
-###
+<a href="https://github.com/echeance/Avenoir">
+  <img src="assets/now.svg" width="100%" alt="En ce moment : Avenoir, un assistant système sûr par défaut, en C++23.">
+</a>
 
-<div align="center">
-  <img src="https://cdn.simpleicons.org/javascript/F7DF1E" height="40" alt="javascript logo"  />
-  <img width="12" />
-  <img src="https://cdn.simpleicons.org/typescript/3178C6" height="40" alt="typescript logo"  />
-  <img width="12" />
-  <img src="https://cdn.simpleicons.org/html5/E34F26" height="40" alt="html5 logo"  />
-  <img width="12" />
-  <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/181_Java_logo_logos-512.png" height="40" alt="java logo"  />
-  <img width="12" />
-  <img src="https://cdn.simpleicons.org/python/3776AB" height="40" alt="python logo"  />
-  <img width="12" />
-  <img src="https://cdn.simpleicons.org/c++/00599C" height="40" alt="cplusplus logo"  />
-</div>
+<br><br>
 
-###
+<p align="center">
+  <a href="https://github.com/echeance/DeltaRise"><img src="assets/card-deltarise.svg" width="49%" alt="DeltaRise"></a>
+  <a href="https://echeance.github.io/templates/overworld/#etape-10"><img src="assets/card-facelog.svg" width="49%" alt="FaceLog"></a>
+  <a href="https://github.com/echeance/NeverLessSpigot"><img src="assets/card-neverless.svg" width="49%" alt="NeverLessSpigot"></a>
+  <a href="https://echeance.github.io/templates/overworld/#etape-3"><img src="assets/card-rinaorc.svg" width="49%" alt="Rinaorc"></a>
+  <a href="https://echeance.github.io/templates/overworld/#etape-4"><img src="assets/card-emerixe.svg" width="49%" alt="EmerixeProxy"></a>
+  <a href="https://github.com/echeance/S2.02"><img src="assets/card-navyra.svg" width="49%" alt="Navyra"></a>
+</p>
+
+<br>
+
+<img src="assets/studio.svg" width="100%" alt="Compétences : Java, C++, C, JavaScript, TypeScript, Python, React, Node.js, PostgreSQL, Docker, Linux, Raspberry Pi, SolidWorks et plus.">
+
+<br><br>
+
+<a href="mailto:ympax14@gmail.com">
+  <img src="assets/footer.svg" width="100%" alt="Stage, alternance ou projet : je suis à l'écoute.">
+</a>
+
+<!-- Les visuels sont générés par build/build.mjs (node build/build.mjs). -->
